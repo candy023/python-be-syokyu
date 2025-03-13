@@ -15,6 +15,7 @@ def create_todo_list(db: Session, new_todo_list: NewTodoList):
       title=todo_list.title,
       description=todo_list.description
     )
+    
     db.add(db_todo_list)
     db.commit()
     db.refresh(db_todo_list)

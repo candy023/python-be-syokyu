@@ -2,7 +2,6 @@ import os
 from datetime import datetime
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-
 from app.dependencies import get_db
 from app.crud.list_crud import get_todo_list, create_todo_list, update_todo_list, delete_todo_list
 from app.schemas.list_schema import NewTodoList, UpdateTodoList, ResponseTodoList

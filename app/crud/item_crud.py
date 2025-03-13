@@ -13,6 +13,7 @@ def get_todo_item(db: Session, todo_list_id: int, todo_item_id: int):
         ItemModel.todo_list_id == todo_list_id
     ).first()
     
+    
 def create_todo_item(db: Session, todo_list_id: int, new_todo_item: NewTodoItem):
     """TODO項目を新規作成する"""
     db_todo_item = ItemModel(

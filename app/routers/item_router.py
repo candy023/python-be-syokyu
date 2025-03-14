@@ -22,7 +22,7 @@ def get_item(todo_list_id: int, todo_item_id: int, db: Session = Depends(get_db)
     return db_item
 
 
-@router.post("", response_model=ResponseTodoItem)
+@router.post("/", response_model=ResponseTodoItem)
 def post_item(todo_list_id: int, todo_item: NewTodoItem, db: Session = Depends(get_db)):
     # 更新: create_todo_item → post_todo_item
     return post_todo_item(db, todo_list_id, todo_item)

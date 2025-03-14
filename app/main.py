@@ -1,14 +1,11 @@
 import os
-from datetime import datetime
+
+# 2. サードパーティライブラリのインポート
 from fastapi import FastAPI
-from pydantic import BaseModel, Field
-from fastapi import Depends, HTTPException
-from sqlalchemy.orm import Session
-from .dependencies import get_db
-from app.const import TodoItemStatusCode
-from .models.item_model import ItemModel
-from .models.list_model import ListModel
-from app.routers import list_router, item_router 
+
+from app.routers import item_router, list_router
+
+# 3. ローカルアプリケーション/ライブラリのインポート
 
 DEBUG = os.environ.get("DEBUG", "") == "true"
 
@@ -28,10 +25,17 @@ if DEBUG:
     )
 
 
-#API4 Helthを追加
+
+
+@app.get("/echo", tags=["Hello"])
+def get_hello():
+    return {"Message": "Hello FastAPI!"}
+# API4 Helthを追加
 @app.get("/health", tags=["System"])
 def get_health():
     return {"status": "ok"}
+
+
 # TODOリスト関連のエンドポイント
 app.include_router(list_router.router)
 # TODO項目関連のエンドポイント

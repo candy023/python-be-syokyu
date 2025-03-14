@@ -1,5 +1,7 @@
 from datetime import datetime
+
 from pydantic import BaseModel, Field
+
 
 class NewTodoList(BaseModel):
     """TODOリスト新規作成時のスキーマ."""

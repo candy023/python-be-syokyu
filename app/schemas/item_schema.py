@@ -1,6 +1,9 @@
 from datetime import datetime
+
 from pydantic import BaseModel, Field
+
 from app.const import TodoItemStatusCode
+
 
 class NewTodoItem(BaseModel):
     """TODO項目新規作成時のスキーマ."""

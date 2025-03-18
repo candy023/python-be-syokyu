@@ -42,8 +42,8 @@ def test_get_todo_lists_pagination(per_page: int, page: int, db_session) -> None
     response_body = response.json()
     assert len(response_body) == per_page if per_page * page <= NUM_OF_RECORDS else NUM_OF_RECORDS % per_page
 
-    actual_data_ids = sorted([x["id"]  for x in response_body])
-    expected_data_ids = sorted([x.id  for x in db_todo_lists])
+    actual_data_ids = sorted([x["id"] for x in response_body])
+    expected_data_ids = sorted([x.id for x in db_todo_lists])
 
     idx_from = per_page * (page - 1)
     idx_to = per_page * page
@@ -93,8 +93,8 @@ def test_get_todo_items_pagination(per_page: int, page: int, db_session) -> None
     response_body = response.json()
     assert len(response_body) == per_page if per_page * page <= NUM_OF_RECORDS else NUM_OF_RECORDS % per_page
 
-    actual_data_ids = sorted([x["id"]  for x in response_body])
-    expected_data_ids = sorted([x.id  for x in db_todo_items])
+    actual_data_ids = sorted([x["id"] for x in response_body])
+    expected_data_ids = sorted([x.id for x in db_todo_items])
 
     idx_from = per_page * (page - 1)
     idx_to = per_page * page

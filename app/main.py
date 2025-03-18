@@ -25,11 +25,11 @@ if DEBUG:
     )
 
 
-
-
 @app.get("/echo", tags=["Hello"])
 def get_hello():
     return {"Message": "Hello FastAPI!"}
+
+
 # API4 Helthを追加
 @app.get("/health", tags=["System"])
 def get_health():

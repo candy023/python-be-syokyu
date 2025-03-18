@@ -34,8 +34,8 @@ def put_todo_item(db: Session, todo_list_id: int, todo_item_id: int, update_todo
         db: データベースセッション
         todo_list_id: TODO項目が属するTODOリストのID
         todo_item_id: 更新するTODO項目のID
-        update_todo_item: 更新するデータ   
-    Returns: 更新後のTODO項目のデータ
+        update_todo_item: 更新するデータ
+    Returns: 更新後のTODO項目のデータ.
     """
     db_todo_item = db.query(ItemModel).filter(
         ItemModel.id == todo_item_id,
@@ -68,7 +68,7 @@ def put_todo_item(db: Session, todo_list_id: int, todo_item_id: int, update_todo
 
 
 def delete_todo_item(db: Session, todo_list_id: int, todo_item_id: int):
-    """TODO項目を削除する
+    """TODO項目を削除する.
 
     db: データベースセッション
     todo_list_id: TODO項目が属するTODOリストのID
@@ -86,3 +86,8 @@ def delete_todo_item(db: Session, todo_list_id: int, todo_item_id: int):
         db.commit()
         return True
     return False
+
+
+def get_todo_items(db: Session, todo_list_id: int):
+
+    return db.query(ItemModel).filter(ItemModel.todo_list_id == todo_list_id).all()

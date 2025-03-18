@@ -4,7 +4,11 @@ from sqlalchemy.orm import Session
 from app.models.list_model import ListModel
 from app.schemas.list_schema import NewTodoList, UpdateTodoList
 
-  # 　-TODOリスト取得処理です。
+  #   TODOリスト一覧取得 API(15)
+
+
+def get_todo_lists(db: Session):
+    return db.query(ListModel).all()
 
 
 def get_todo_list(db: Session, todo_list_id: int):

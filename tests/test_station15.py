@@ -34,8 +34,8 @@ def test_get_todo_lists(db_session) -> None:
     # レスポンスBodyの確認
     response_body = response.json()
 
-    actual_data_ids = sorted([x["id"]  for x in response_body])
-    expected_data_ids = sorted([x.id  for x in db_todo_lists])
+    actual_data_ids = sorted([x["id"] for x in response_body])
+    expected_data_ids = sorted([x.id for x in db_todo_lists])
     assert actual_data_ids == expected_data_ids
 
 
@@ -75,6 +75,6 @@ def test_get_todo_items(db_session) -> None:
     # レスポンスBodyの確認
     response_body = response.json()
 
-    actual_data_ids = sorted([x["id"]  for x in response_body])
-    expected_data_ids = sorted([x.id  for x in db_todo_items])
+    actual_data_ids = sorted([x["id"] for x in response_body])
+    expected_data_ids = sorted([x.id for x in db_todo_items])
     assert actual_data_ids == expected_data_ids

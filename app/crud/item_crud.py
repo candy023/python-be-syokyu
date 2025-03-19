@@ -14,12 +14,14 @@ def get_todo_item(db: Session, todo_list_id: int, todo_item_id: int):
     ).first()
 
 
+# item_crud.py の post_todo_item 関数修正
 def post_todo_item(db: Session, todo_list_id: int, new_todo_item: NewTodoItem):
     db_todo_item = ItemModel(
-        list_id=todo_list_id,
+        todo_list_id=todo_list_id,  # list_id → todo_list_id に修正
         title=new_todo_item.title,
         description=new_todo_item.description,
-        status=new_todo_item.status,
+        status_code=new_todo_item.status.value,  # status → status_code に修正、Enum の値を取得
+        due_at=new_todo_item.due_at  # 欠落していた due_at フィールドを追加
     )
 
     db.add(db_todo_item)

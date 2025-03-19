@@ -29,8 +29,14 @@ def get_item(todo_list_id: int, todo_item_id: int, db: Annotated[Session, Depend
     return db_item
 
 
-@router.post("/", response_model=ResponseTodoItem)
+@router.post("", response_model=ResponseTodoItem)
 def post_item(todo_list_id: int, todo_item: NewTodoItem, db: Annotated[Session, Depends(get_db)]):
+    # リストの存在確認を追加
+    from app.crud.list_crud import get_todo_list
+    todo_list = get_todo_list(db, todo_list_id)
+    if todo_list is None:
+        raise HTTPException(status_code=404, detail="Todo list not found")
+   
     # 更新: create_todo_item → post_todo_item
     return post_todo_item(db, todo_list_id, todo_item)
 

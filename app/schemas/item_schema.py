@@ -11,6 +11,7 @@ class NewTodoItem(BaseModel):
     title: str = Field(title="Todo Item Title", min_length=1, max_length=100)
     description: str | None = Field(default=None, title="Todo Item Description", min_length=1, max_length=200)
     due_at: datetime | None = Field(default=None, title="Todo Item Due")
+    status: TodoItemStatusCode = Field(default=TodoItemStatusCode.NOT_COMPLETED, title="Todo Status Code")
 
 
 class UpdateTodoItem(BaseModel):

@@ -30,7 +30,7 @@ def get_list(todo_list_id: int, db: Annotated[Session, Depends(get_db)]):
     return db_item
 
 
-@router.post("/", response_model=ResponseTodoList)
+@router.post("", response_model=ResponseTodoList)
 def post_list(todo_list: NewTodoList, db: Annotated[Session, Depends(get_db)]):
     """TODOリストを新規作成する."""
     return post_todo_list(db, todo_list)

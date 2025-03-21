@@ -4,11 +4,11 @@ from sqlalchemy.orm import Session
 from app.models.list_model import ListModel
 from app.schemas.list_schema import NewTodoList, UpdateTodoList
 
-  #   TODOリスト一覧取得 API(15)
-
-
-def get_todo_lists(db: Session):
-    return db.query(ListModel).all()
+  #TODOリスト一覧取得 API(15)
+def get_todo_lists(db: Session, page: int = 1, per_page: int = 10):
+    
+    offset = (page - 1) * per_page
+    return db.query(ListModel).order_by(ListModel.id).offset(offset).limit(per_page).all()
 
 
 def get_todo_list(db: Session, todo_list_id: int):

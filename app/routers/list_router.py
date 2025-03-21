@@ -1,6 +1,6 @@
 
-from typing import Annotated
-
+from typing import Annotated, Optional
+from fastapi import Query
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
@@ -16,9 +16,16 @@ router = APIRouter(
 
 
 @router.get("", response_model=list[ResponseTodoList])
-def read_todo_lists(db: Annotated[Session, Depends(get_db)]):
-    """全てのTODOリストを取得する."""
-    return get_todo_lists(db)
+def read_todo_lists(
+    db: Annotated[Session, Depends(get_db)],
+    page: Optional[int] = Query(1, ge=1, description="ページ番号"),
+    per_page: Optional[int] = Query(10, ge=1, le=100, description="1ページあたりの最大件数"),
+):
+    """全てのTODOリストを取得する.
+    
+    ページネーションパラメータを指定することで、結果を分割して取得できます。
+    """
+    return get_todo_lists(db, page=page, per_page=per_page)
 
 
 @router.get("/{todo_list_id}", response_model=ResponseTodoList)
